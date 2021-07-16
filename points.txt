@@ -1,0 +1,13 @@
+
+Startup class is called in main entry point program.cs
+Startup.Configure is HttpRequest pipeline
+
+Setup static files :
+app.UseStaticFiles()
+Static files must be inside wwwroot
+
+Default static files :
+app.UseDefaultFiles()
+	Search the file inside wwwroot
+	Change the internal path to point to the file
+	return the changed internal path

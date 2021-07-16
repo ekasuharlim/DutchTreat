@@ -22,15 +22,10 @@ namespace DutchTreat
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.Run(RequestHandler) or below command;
-            app.Run( context => {  return context.Response.WriteAsync("Hello eka 2"); });
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
                      
         }
 
-        public Task RequestHandler(HttpContext context) {
-
-            Thread.Sleep(5000);
-            return context.Response.WriteAsync("Hello Eka");
-        }
     }
 }
