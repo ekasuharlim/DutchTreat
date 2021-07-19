@@ -11,3 +11,10 @@ app.UseDefaultFiles()
 	Search the file inside wwwroot
 	Change the internal path to point to the file
 	return the changed internal path
+
+Enable MVC :
+	Services.AddControllersWithViews()
+	app.UseRouting();
+	app.UseEndpoints(Action<IEndPpointBuilder>);
+
+How UseEndPoints works
