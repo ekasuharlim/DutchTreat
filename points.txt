@@ -17,4 +17,14 @@ Enable MVC :
 	app.UseRouting();
 	app.UseEndpoints(Action<IEndPpointBuilder>);
 
-How UseEndPoints works
+How UseEndPoints works :
+	Understanding ASP.NET Core Endpoint Routing https://aregcode.com/blog/2019/dotnetcore-understanding-aspnet-endpoint-routing/
+	EndpointRoutingApplicationBuilderExtensions -> extension class that has UseRouting and UseEndpoints method
+	UseRouting : to match pattern with url
+		UseRouting will call EndpointRoutingMiddleware -> responsible for matching url with pattern specified in UseEndPoints
+	UseEndPoints : endpoint mapping and dispatch endpoint
+				   mapping defined here also can be accessed in UseRouting when request comes			
+				   mapping is defined in this class
+				   will call EndpointMiddleware for dispatching
+		UseEndPoints : will call EndpointMiddleware
+		
