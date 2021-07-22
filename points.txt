@@ -18,13 +18,19 @@ Enable MVC :
 	app.UseEndpoints(Action<IEndPpointBuilder>);
 
 How UseEndPoints works :
-	Understanding ASP.NET Core Endpoint Routing https://aregcode.com/blog/2019/dotnetcore-understanding-aspnet-endpoint-routing/
+	Understanding ASP.NET Core Endpoint Routing : https://aregcode.com/blog/2019/dotnetcore-understanding-aspnet-endpoint-routing/
+	How ASP. Net core endpoint routing works : https://developpaper.com/how-asp-net-core-endpoint-routing-works/
 	EndpointRoutingApplicationBuilderExtensions -> extension class that has UseRouting and UseEndpoints method
+	ControllerEndpointRouteBuilderExtensions -> extension class contains MapControllerRoute  and  other methods for using Controllers 
 	UseRouting : to match pattern with url
 		UseRouting will call EndpointRoutingMiddleware -> responsible for matching url with pattern specified in UseEndPoints
+			EndpointRoutingMiddleware will call Matcher (eg: BareboneMatcher) to set matched EndPoint to HttpContext in method MatchAsync
+
 	UseEndPoints : endpoint mapping and dispatch endpoint
-				   mapping defined here also can be accessed in UseRouting when request comes			
-				   mapping is defined in this class
-				   will call EndpointMiddleware for dispatching
-		UseEndPoints : will call EndpointMiddleware
+				   mapping defined here also can be accessed in UseRouting when request comes (MapControllerRoute)	
+						MapControllerRoute will add ConventionalRouteEntry to the route datasource
+										   will add ControllerActionEndpointDataSource to datasource, has method CreateEndpoints, 
+										   CreateEndpoints in the end it will create Endpoint.RequestDelegate
+				   will call EndpointMiddleware for dispatching (await endpoint.RequestDelegate)
+					
 		

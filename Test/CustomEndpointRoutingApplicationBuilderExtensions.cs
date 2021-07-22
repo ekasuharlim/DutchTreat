@@ -9,7 +9,7 @@ using DutchTreat.Test;
 
 namespace Microsoft.AspNetCore.Routing
 {
-    public static class CustomEndpointsBuilder
+    public static class CustomEndpointRoutingApplicationBuilderExtensions
     {
         public static IApplicationBuilder UseCustomEndpoints(this IApplicationBuilder builder, Action<IEndpointRouteBuilder> configure)
         {
@@ -31,12 +31,13 @@ namespace Microsoft.AspNetCore.Routing
             configure(endpointRouteBuilder);
 
             var routeOptions = builder.ApplicationServices.GetRequiredService<IOptions<RouteOptions>>();
+            /*
             foreach (var dataSource in endpointRouteBuilder.DataSources)
             {
-                //EndpointDataSources is internal in namespace Microsoft.AspNetCore.Routing
+                //this can't be done as EndpointDataSources is internal in namespace Microsoft.AspNetCore.Routing
                 routeOptions.Value.EndpointDataSources.Add(dataSource);
             }
-
+            */
             return builder.UseMiddleware<CustomEndpointMiddleware>();
         }
 
