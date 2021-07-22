@@ -1,0 +1,20 @@
+﻿<html>
+<head>
+    <title>Dutch Treat @ViewBag.Title</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <header>@ViewBag.Title</header>
+    <menu>
+        <ul>
+            <li><a asp-controller="App" asp-action="Index" >Home</a></li>
+            <li><a asp-controller="App" asp-action="Contact" >Contact</a></li>
+            <li><a asp-controller="App" asp-action="About" >About</a></li>
+        </ul>
+    </menu>
+    <section>@RenderBody()</section>
+    <footer>c@2021</footer>
+</body>
+</html>

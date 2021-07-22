@@ -33,4 +33,8 @@ How UseEndPoints works :
 										   CreateEndpoints in the end it will create Endpoint.RequestDelegate
 				   will call EndpointMiddleware for dispatching (await endpoint.RequestDelegate)
 					
-		
+More views:
+	Special file :
+		Shared/_Layout.cshtml  -> master page contains header and footer
+		_ViewStart.cshtml -> put reference to Lasyout file, will  be applied to all views
+		_ViewImport.cshtml -> put included binaries in all cshtml file, can be use to include taghelper

@@ -10,9 +10,18 @@ namespace DutchTreat.Controllers
     public class AppController : Controller
     {
         public IActionResult Index() {
-            throw new Exception("a test");
             return View();
         }
-        
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
     }
 }
