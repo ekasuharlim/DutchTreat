@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: lightgrey;
+    background-color: white;
 }
 
 menu li {
@@ -12,3 +12,21 @@ menu li {
     menu li:last-of-type::after {
         content:"";
     }
+
+.contact-form{
+    border: 1px solid blue;
+    padding: 5px
+}
+    .contact-form label {
+        font-size: 18px;
+        width: 100px;
+        display: inline-block;
+    }
+    .contact-form input,textarea {
+        font-size: 18px;
+        width: 200px;
+    }
+
+        .contact-form input[type=submit] {
+            width: auto;
+        }

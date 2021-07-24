@@ -38,3 +38,12 @@ More views:
 		Shared/_Layout.cshtml  -> master page contains header and footer
 		_ViewStart.cshtml -> put reference to Lasyout file, will  be applied to all views
 		_ViewImport.cshtml -> put included binaries in all cshtml file, can be use to include taghelper
+
+ModelViewBinding:
+	Create the model
+	Add reference to  the model on the view html
+
+Validation
+	To add validation : add reference to System.ComponentModel.DataAnnotations
+	ClientSide validation will need Jquery.Validate and Jquery.Validate.Unobtrusive
+	Jquery.Validate.Unobtrusive -> is a microsoft Jquery Validate extension
