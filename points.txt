@@ -43,7 +43,14 @@ ModelViewBinding:
 	Create the model
 	Add reference to  the model on the view html
 
-Validation
+Validation:
 	To add validation : add reference to System.ComponentModel.DataAnnotations
 	ClientSide validation will need Jquery.Validate and Jquery.Validate.Unobtrusive
 	Jquery.Validate.Unobtrusive -> is a microsoft Jquery Validate extension
+
+Services:
+	Defined in startup.cs
+	Add dependency Injection in Startup.cs
+		https://stackoverflow.com/questions/38138100/addtransient-addscoped-and-addsingleton-services-differences
+		AddTransient: will be created as requested
+	How dependency injection works ?

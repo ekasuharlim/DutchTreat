@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.AspNetCore.Routing;
 using DutchTreat.Test;
+using DutchTreat.Services;
 
 namespace DutchTreat
 {
@@ -19,6 +20,7 @@ namespace DutchTreat
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IMailService, DummyMailService>();
             services.AddControllersWithViews();
         }
 
