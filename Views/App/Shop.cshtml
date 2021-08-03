@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Shop";
+}
+
+<div>
+    <h1>@ViewBag.Title</h1>
+    <div class="row">
+        @foreach (var p in Model){
+            <div class="col-md-3">
+                <p>@p.Title</p>
+            </div>
+        }
+    </div>
+</div>

@@ -53,4 +53,6 @@ Services:
 	Add dependency Injection in Startup.cs
 		https://stackoverflow.com/questions/38138100/addtransient-addscoped-and-addsingleton-services-differences
 		AddTransient: will be created as requested
-	How dependency injection works ?
+		AddScoped : a request lifetime
+EntityFramework:
+	

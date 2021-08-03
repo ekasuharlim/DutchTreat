@@ -11,6 +11,7 @@ using System.Threading;
 using Microsoft.AspNetCore.Routing;
 using DutchTreat.Test;
 using DutchTreat.Services;
+using DutchTreat.Data;
 
 namespace DutchTreat
 {
@@ -22,6 +23,7 @@ namespace DutchTreat
         {
             services.AddTransient<IMailService, DummyMailService>();
             services.AddControllersWithViews();
+            services.AddScoped<IDutchRepository, DutchRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
