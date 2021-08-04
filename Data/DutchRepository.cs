@@ -9,20 +9,16 @@ namespace DutchTreat.Data
 {
     public class DutchRepository : IDutchRepository
     {
+        private readonly DutchContext dbCtx;
+
+        public DutchRepository(DutchContext dbCtx)
+        {
+            this.dbCtx = dbCtx;
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
-            var result = new List<Product>();
-            result.Add(new Product
-            {
-                Id = 100,
-                Title = "Title 1"
-            });
-            result.Add(new Product
-            {
-                Id = 200,
-                Title = "Title 2"
-            });
-            return result;
+            return dbCtx.Products.OrderBy(p => p.Category).ToList();
 
         }
     }

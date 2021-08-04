@@ -54,5 +54,13 @@ Services:
 		https://stackoverflow.com/questions/38138100/addtransient-addscoped-and-addsingleton-services-differences
 		AddTransient: will be created as requested
 		AddScoped : a request lifetime
+
 EntityFramework:
-	
+	Create DbContext
+		Configure connection string in onConfiguring override
+		Add DbSet -> entities to query
+
+Create API:
+	Getting data
+		why need to use ActionResult<IEnumerable<Product>> ?
+			for documentation tools
