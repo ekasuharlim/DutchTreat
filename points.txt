@@ -59,6 +59,8 @@ EntityFramework:
 	Create DbContext
 		Configure connection string in onConfiguring override
 		Add DbSet -> entities to query
+		Seeder created inside main as optional action
+		next : create seeder
 
 Create API:
 	Getting data

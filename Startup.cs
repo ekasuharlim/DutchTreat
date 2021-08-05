@@ -23,6 +23,7 @@ namespace DutchTreat
         {
             services.AddTransient<IMailService, DummyMailService>();
             services.AddControllersWithViews();
+            services.AddTransient<DbSeeder>();
             services.AddScoped<DutchContext>();
             services.AddScoped<IDutchRepository, DutchRepository>();
         }

@@ -27,5 +27,7 @@ namespace DutchTreat.Data
             optionsBuilder.UseSqlServer(this.config["ConnectionStrings:DutchContextDb"]);
         }
 
+        
+
     }
 }
