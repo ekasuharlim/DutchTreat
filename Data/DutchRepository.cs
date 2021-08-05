@@ -16,10 +16,26 @@ namespace DutchTreat.Data
             this.dbCtx = dbCtx;
         }
 
+        public IEnumerable<Order> GetAllOrder()
+        {
+            return dbCtx.Orders.OrderByDescending(o => o.Id);
+        }
+        
+
         public IEnumerable<Product> GetAllProducts()
         {
             return dbCtx.Products.OrderBy(p => p.Category).ToList();
 
+        }
+
+
+        public Order GetOrder(int id)
+        {
+            return dbCtx.Orders.FirstOrDefault(o => o.Id == id);
+        }
+
+        public Product GetProduct(int id) {
+            return dbCtx.Products.FirstOrDefault(p => p.Id == id);
         }
     }
 }

@@ -36,6 +36,21 @@ namespace DutchTreat.Controllers
             }
             
         }
-        
+        [HttpGet]
+        [Route("{id}")]
+        public ActionResult<IEnumerable<Product>> Get(int id)
+        {
+            try
+            {
+                return Ok(this.repository.GetProduct(id));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message, ex);
+                return BadRequest(ex.Message);
+            }
+        }
+
+
     }
 }
