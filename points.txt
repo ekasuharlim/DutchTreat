@@ -66,3 +66,7 @@ Create API:
 	Getting data
 		why need to use ActionResult<IEnumerable<Product>> ?
 			for documentation tools
+	Post Data:
+		use viewmodel
+		use automapper to map viewmodel to entity
+		validation can be added to viewmodel

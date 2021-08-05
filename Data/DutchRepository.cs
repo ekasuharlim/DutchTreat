@@ -16,6 +16,11 @@ namespace DutchTreat.Data
             this.dbCtx = dbCtx;
         }
 
+        public void AddEntity(object entity)
+        {
+            this.dbCtx.Add(entity);
+        }
+
         public IEnumerable<Order> GetAllOrder()
         {
             return dbCtx.Orders.OrderByDescending(o => o.Id);
@@ -36,6 +41,20 @@ namespace DutchTreat.Data
 
         public Product GetProduct(int id) {
             return dbCtx.Products.FirstOrDefault(p => p.Id == id);
+        }
+
+        public bool SaveAll()
+        {
+            try
+            {
+                this.dbCtx.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DutchTreat.Data;
 using DutchTreat.Data.Entities;
+using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -55,6 +56,41 @@ namespace DutchTreat.Controllers
                 logger.LogError($"Error {ex.Message}");
                 return BadRequest("Error get order");
             }
+        }
+
+        [HttpPost]
+        public ActionResult Post([FromBody]OrderViewModel orderVm) {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //save
+                    var order = new Order
+                    {
+                        OrderNumber = orderVm.OrderNumber,
+                        OrderDate = orderVm.OrderDate,
+                        Id = orderVm.Id
+                    };
+                    repo.AddEntity(order);
+                    if (repo.SaveAll()) {
+                        return Created($"api/orders/{order.Id}", order);
+                    }
+                    else {
+                        return BadRequest("Save error");
+                    }
+                    
+                }
+                else 
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Error saving {ex.Message}");
+                return BadRequest("Error saving");
+            }
+
         }
     }
 }
