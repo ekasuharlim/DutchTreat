@@ -1,4 +1,5 @@
-﻿using DutchTreat.Data;
+﻿using AutoMapper;
+using DutchTreat.Data;
 using DutchTreat.Data.Entities;
 using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -16,20 +17,22 @@ namespace DutchTreat.Controllers
     {
         private readonly IDutchRepository repo;
         private readonly ILogger<IDutchRepository> logger;
+        private readonly IMapper mapper;
 
-        public OrdersController(IDutchRepository repo, ILogger<IDutchRepository> logger)
+        public OrdersController(IDutchRepository repo, ILogger<IDutchRepository> logger, IMapper mapper)
         {
             this.repo = repo;
             this.logger = logger;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Order>> Get()
+        public ActionResult<IEnumerable<OrderViewModel>> Get()
         {
             try
             {
                 var orders = repo.GetAllOrder();
-                return Ok(orders);
+                return Ok(mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(orders));
             }
             catch (Exception ex)
             {
@@ -40,7 +43,7 @@ namespace DutchTreat.Controllers
 
         [Route("{id}")]
         [HttpGet]
-        public ActionResult<Order> Get(int id) {
+        public ActionResult<OrderViewModel> Get(int id) {
             try
             {
                 var order = repo.GetOrder(id);
@@ -49,7 +52,7 @@ namespace DutchTreat.Controllers
                     return NotFound("Order id not found");
                 }
                  else { 
-                    return Ok(order); 
+                    return Ok(mapper.Map<Order,OrderViewModel>(order)); 
                 }
             }
             catch (Exception ex) {
@@ -69,7 +72,7 @@ namespace DutchTreat.Controllers
                     {
                         OrderNumber = orderVm.OrderNumber,
                         OrderDate = orderVm.OrderDate,
-                        Id = orderVm.Id
+                        Id = orderVm.OrderId
                     };
                     repo.AddEntity(order);
                     if (repo.SaveAll()) {

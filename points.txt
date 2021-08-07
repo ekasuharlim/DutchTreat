@@ -68,5 +68,12 @@ Create API:
 			for documentation tools
 	Post Data:
 		use viewmodel
-		use automapper to map viewmodel to entity
 		validation can be added to viewmodel
+		use automapper to map viewmodel to entity
+			accessible by DI
+			Profile Class in automapper will need to be inherit to define mapping
+				CreateMap by default will use the property name
+			Can be used to flatning entity in view model 
+	Create OrderItems with order url
+	Use QueryString to add some parameters to the url
+	

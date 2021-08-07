@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Routing;
 using DutchTreat.Test;
 using DutchTreat.Services;
 using DutchTreat.Data;
+using System.Reflection;
 
 namespace DutchTreat
 {
@@ -22,10 +23,11 @@ namespace DutchTreat
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IMailService, DummyMailService>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddTransient<DbSeeder>();
             services.AddScoped<DutchContext>();
             services.AddScoped<IDutchRepository, DutchRepository>();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
