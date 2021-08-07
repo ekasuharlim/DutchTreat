@@ -22,11 +22,28 @@ namespace DutchTreat.Data
             this.dbCtx.Add(entity);
         }
 
-        public IEnumerable<Order> GetAllOrder()
+        public IEnumerable<Order> GetAllOrder(bool includeOrderItem)
         {
-            return dbCtx.Orders.Include( o => o.Items).OrderByDescending(o => o.Id);
+            if (includeOrderItem)
+            {
+                return dbCtx.Orders
+                    .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
+                    .OrderByDescending(o => o.Id);
+
+            }
+            else {
+                return dbCtx.Orders;                        
+            }
         }
-        
+        public Order GetOrder(int id)
+        {
+            return dbCtx.Orders
+                .Include(o => o.Items)
+                .ThenInclude(i => i.Product)
+                .FirstOrDefault(o => o.Id == id);
+        }
+
 
         public IEnumerable<Product> GetAllProducts()
         {
@@ -35,10 +52,6 @@ namespace DutchTreat.Data
         }
 
 
-        public Order GetOrder(int id)
-        {
-            return dbCtx.Orders.Include(o => o.Items).FirstOrDefault(o => o.Id == id);
-        }
 
         public Product GetProduct(int id) {
             return dbCtx.Products.FirstOrDefault(p => p.Id == id);
