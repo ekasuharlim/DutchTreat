@@ -60,7 +60,10 @@ EntityFramework:
 		Configure connection string in onConfiguring override
 		Add DbSet -> entities to query
 		Seeder created inside main as optional action
-		next : create seeder
+		DbContext registered in DI use in Repository class
+		Repository registered in DI 
+		Controller use repository
+
 
 Create API:
 	Getting data
@@ -77,3 +80,7 @@ Create API:
 	Create OrderItems with order url
 	Use QueryString to add some parameters to the url
 	
+Using Identity, with entity framework
+	Create model
+	Create identity dbContext	
+	services.AddIdentity<StoreUser, IdentityRole>().AddEntityFrameworkStores<DutchContext>() -> will add -> IUserStore

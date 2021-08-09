@@ -13,6 +13,8 @@ using DutchTreat.Test;
 using DutchTreat.Services;
 using DutchTreat.Data;
 using System.Reflection;
+using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace DutchTreat
 {
@@ -28,6 +30,8 @@ namespace DutchTreat
             services.AddScoped<DutchContext>();
             services.AddScoped<IDutchRepository, DutchRepository>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddIdentity<StoreUser, IdentityRole>().AddEntityFrameworkStores<DutchContext>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
