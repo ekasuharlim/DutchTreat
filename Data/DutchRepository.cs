@@ -47,7 +47,7 @@ namespace DutchTreat.Data
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return dbCtx.Products.OrderBy(p => p.Category).ToList();
+            return dbCtx.Products.OrderBy(p => p.Category).Take(10).ToList();
 
         }
 

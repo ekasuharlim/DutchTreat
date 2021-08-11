@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 
 namespace DutchTreat.Data
 {
@@ -14,13 +15,16 @@ namespace DutchTreat.Data
     {
         private readonly DutchContext ctx;
         private readonly IWebHostEnvironment env;
+        private readonly UserManager<StoreUser> userManager;
 
-        public DbSeeder(DutchContext ctx, IWebHostEnvironment env) {
+        public DbSeeder(DutchContext ctx, IWebHostEnvironment env, UserManager<StoreUser> userManager)
+        {
             this.ctx = ctx;
             this.env = env;
+            this.userManager = userManager;
         }
 
-        public void Seed() {
+        public async Task SeedAsync() {
             var jsonfile = Path.Combine(env.ContentRootPath , "Data/art.json");
             var jsondata = File.ReadAllText(jsonfile);
             var products = JsonSerializer.Deserialize <IEnumerable<Product>>(jsondata);
@@ -28,8 +32,21 @@ namespace DutchTreat.Data
                 ctx.AddRange(products);
             }
 
+            var user = new StoreUser
+            {
+                UserName = "Eka",
+                FirstName = "F1",
+                LastName = "L1"
+            };
+            var userResult = await this.userManager.CreateAsync(user,"P@ssw0rd");
+            if (userResult != IdentityResult.Success) 
+            {
+                throw new ApplicationException("failed create user");   
+            }
+
             var order = new Order
             {
+                User = user,
                 OrderDate = DateTime.Now,
                 OrderNumber = "1000",
                 Items = new List<OrderItem> {
