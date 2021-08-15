@@ -36,6 +36,22 @@ namespace DutchTreat.Data
                 return dbCtx.Orders;                        
             }
         }
+        public IEnumerable<Order> GetAllOrder(string userName, bool includeOrderItem)
+        {
+            if (includeOrderItem)
+            {
+                return dbCtx.Orders
+                    .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
+                    .Where(o => o.User.UserName == userName)
+                    .OrderByDescending(o => o.Id);
+            }
+            else
+            {
+                return dbCtx.Orders;
+            }
+        }
+
         public Order GetOrder(int id)
         {
             return dbCtx.Orders

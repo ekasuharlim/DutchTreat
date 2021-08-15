@@ -15,11 +15,19 @@ using DutchTreat.Data;
 using System.Reflection;
 using DutchTreat.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
+using System.Text;
 
 namespace DutchTreat
 {
     public class Startup
     {
+        private readonly IConfiguration config;
+
+        public Startup(IConfiguration config) {
+            this.config = config;
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -31,6 +39,13 @@ namespace DutchTreat
             services.AddScoped<IDutchRepository, DutchRepository>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddIdentity<StoreUser, IdentityRole>().AddEntityFrameworkStores<DutchContext>();
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer( cfg => cfg.TokenValidationParameters = new TokenValidationParameters() {
+                    ValidIssuer = this.config["Token:Issuer"],
+                    ValidAudience = this.config["Token:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.config["Token:Key"]))
+        });
             
         }
 

@@ -84,3 +84,21 @@ Using Identity, with entity framework
 	Create model
 	Create identity dbContext	
 	services.AddIdentity<StoreUser, IdentityRole>().AddEntityFrameworkStores<DutchContext>() -> will add -> IUserStore
+
+Identity for API
+	Add JwtBearer in DI <- Use token 
+	[Authorize(Authentication = xxx)] To differentiate the authentication in authentication
+	CreateToken method will create :
+		- token -> need -> claim and signincredential 
+		        -> need -> tokenKey <- specify also in startup
+		- retun token with handler
+	JwtToken:
+		Header
+		Payload -> claims
+		Signature -> (secret + payload) encrypted
+	CreateToken -> jwtToken -> base64 -> decode -> compare signature with key -> if ok then authenticated
+	Token vs Session Auth 
+	Distributed vs Centralize
+	Stateless vs Stateful
+
+	https://www.webskeleton.com/webdev/2019/10/22/JWT-Primer-and-Should-You-Use-It.html
