@@ -102,3 +102,9 @@ Identity for API
 	Stateless vs Stateful
 
 	https://www.webskeleton.com/webdev/2019/10/22/JWT-Primer-and-Should-You-Use-It.html
+
+Angular
+	Typescript -> compiled (ng build)-> Javascript 
+	Option to build angular to wwwroot folder
+	include the js file
+	Component -> selector -> match with div in html file

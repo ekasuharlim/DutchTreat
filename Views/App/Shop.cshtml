@@ -1,8 +1,18 @@
 ﻿@model IEnumerable<Product>
 @{
+
     ViewBag.Title = "Shop";
 }
-
+@section Scripts {
+    <script src="~/client/polyfills.js"></script>
+    <script src="~/client/runtime.js"></script>
+    <script src="~/client/main.js"></script>
+}
+@section Head {
+    <link href="~/client/styles.css" rel="stylesheet" />
+}
+<the-shop></the-shop>
+<!--
 <div>
     <h1>@ViewBag.Title</h1>
     <div class="row">
@@ -13,3 +23,4 @@
         }
     </div>
 </div>
+-->
