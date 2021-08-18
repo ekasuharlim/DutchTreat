@@ -6,21 +6,9 @@
 @section Scripts {
     <script src="~/client/polyfills.js"></script>
     <script src="~/client/runtime.js"></script>
-    <script src="~/client/main.js"></script>
+    <script src="~/client/main.js" asp-append-version="true"></script>
 }
 @section Head {
     <link href="~/client/styles.css" rel="stylesheet" />
 }
 <the-shop></the-shop>
-<!--
-<div>
-    <h1>@ViewBag.Title</h1>
-    <div class="row">
-        @foreach (var product in Model){
-            <div class="col-md-3">
-                <p>@product.Title</p>
-            </div>
-        }
-    </div>
-</div>
--->

@@ -108,3 +108,5 @@ Angular
 	Option to build angular to wwwroot folder
 	include the js file
 	Component -> selector -> match with div in html file
+	Need at least 1 module -> has 1 main component -> bootstrap setting
+	component can be nested
