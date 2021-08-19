@@ -1,1 +1,10 @@
-﻿<h1>this is a text test abc d</h1>{{title}}ssss
+﻿<h1>this is a text test abc d</h1>{{title}}
+<div class="row">
+    <div class="col-md-12">
+        product list
+        <ul>
+            <div>{{ products | json}}</div>
+            <li *ngFor="let product of products">{{product.title}}</li>
+        </ul>
+    </div>
+</div>
