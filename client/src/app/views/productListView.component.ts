@@ -1,17 +1,20 @@
-﻿import { Component } from "@angular/core";
+﻿import { Component, OnInit } from "@angular/core";
 import { Store } from "../Services/store.service";
 
 @Component({
     selector: "product-list",
     templateUrl: "productListView.component.html"
 })
-export default class ProductListView {
+export default class ProductListView implements OnInit {
 
-    public products;
-    constructor(private store: Store) {
-        this.products = store.products;
-        console.log("IN");
-        console.log(this.products);
+    constructor(public store: Store) {
+
+    }
+
+    ngOnInit(): void {
+        this.store.loadProducts().subscribe();
+        console.log("in");
+        console.log(this.store.products);
     }
 
     public title = "a test property"

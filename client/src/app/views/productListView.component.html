@@ -1,10 +1,8 @@
-﻿<h1>this is a text test abc d</h1>{{title}}
-<div class="row">
-    <div class="col-md-12">
-        product list
-        <ul>
-            <div>{{ products | json}}</div>
-            <li *ngFor="let product of products">{{product.title}}</li>
-        </ul>
+﻿<div class="row">
+    <div class="col-md-4" *ngFor="let product of store.products">
+        <h3>{{product.title}}</h3>
+        <p>{{product.category}} </p>
+        <p>{{product.price | currency}} </p>
+        <input type="button" class="btn-success text-center" value="Buy" (click)="store.addItemToOrder(product)">
     </div>
 </div>

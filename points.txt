@@ -106,9 +106,13 @@ Identity for API
 Angular
 	Debuging: old method : console.log and display to screen with object | json
 	Typescript -> compiled (ng build)-> Javascript 
-	Option to build angular to wwwroot folder
-	include the js file
-	Component -> selector -> match with div in html file
+	angular.json -> Option to build angular to wwwroot folder 
+	tsconfig.json -> ts compile options
 	Need at least 1 module -> has 1 main component -> bootstrap setting
-	component can be nested
+	include the js file
+	Component :
+		selector -> match with div in html file
+		templateUrl -> view (html)
+		styles -> css file
+	Component -> use -> services (data)
 	

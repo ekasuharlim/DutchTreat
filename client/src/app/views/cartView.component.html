@@ -1,0 +1,25 @@
+﻿<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Total</td>
+            </tr>
+        </thead>
+        <tbody>            
+            <tr *ngFor="let item of store.order.items">
+                <td>{{item.productTitle}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.unitPrice}}</td>
+                <td>{{item.quantity * item.unitPrice | currency}}</td>
+            </tr>
+            <tr>
+                <td colspan="4">{{store.order.subTotal}} </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
