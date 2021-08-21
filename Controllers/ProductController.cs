@@ -28,7 +28,10 @@ namespace DutchTreat.Controllers
         public ActionResult<IEnumerable<Product>> Get() {
             try
             {
-                return Ok(this.repository.GetAllProducts());
+                this.logger.LogInformation("Start fetching product");
+                var result = this.repository.GetAllProducts();
+                this.logger.LogInformation("Finish fetching product");
+                return Ok(result);
             }
             catch (Exception ex) {
                 logger.LogError(ex.Message, ex);

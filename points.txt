@@ -115,4 +115,16 @@ Angular
 		templateUrl -> view (html)
 		styles -> css file
 	Component -> use -> services (data)
+
+	add checkout
+		routing
+	add login
+		form binding
+	checkout clicked
+		call service for saving order
+
+deployment:
+	gulp
+	how to use gulp result in asp.net core?
+	
 	

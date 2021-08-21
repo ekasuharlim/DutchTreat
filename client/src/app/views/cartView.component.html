@@ -8,7 +8,7 @@
                 <td>Total</td>
             </tr>
         </thead>
-        <tbody>            
+        <tbody>
             <tr *ngFor="let item of store.order.items">
                 <td>{{item.productTitle}}</td>
                 <td>{{item.quantity}}</td>
@@ -17,6 +17,9 @@
             </tr>
             <tr>
                 <td colspan="4">{{store.order.subTotal}} </td>
+            </tr>
+            <tr>
+                <td colspan="4"><a class="btn btn-success" routerLink="checkout">Checkout</a></td>
             </tr>
         </tbody>
 

@@ -14,7 +14,7 @@ export default class ProductListView implements OnInit {
     ngOnInit(): void {
         this.store.loadProducts().subscribe();
         console.log("in");
-        console.log(this.store.products);
+        console.log(this.store.products.length);
     }
 
     public title = "a test property"

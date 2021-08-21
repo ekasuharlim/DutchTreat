@@ -4,6 +4,7 @@ using DutchTreat.Services;
 using DutchTreat.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace DutchTreat.Controllers
 {
@@ -11,11 +12,13 @@ namespace DutchTreat.Controllers
     {
         private readonly IMailService mailService;
         private readonly IDutchRepository repository;
+        private readonly ILogger<AppController> logger;
 
-        public AppController(IMailService mailService, IDutchRepository repository)
+        public AppController(IMailService mailService, IDutchRepository repository,ILogger<AppController> logger)
         {
             this.mailService = mailService;
             this.repository = repository;
+            this.logger = logger;
         }
 
         public IActionResult Index() {
@@ -46,8 +49,9 @@ namespace DutchTreat.Controllers
         }
 
         public IActionResult Shop() {
-            var products = this.repository.GetAllProducts();
-            return View(products);
+            //var products = this.repository.GetAllProducts();
+            this.logger.LogInformation("entering shop");
+            return View();
         }
 
     }
