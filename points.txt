@@ -104,22 +104,35 @@ Identity for API
 	https://www.webskeleton.com/webdev/2019/10/22/JWT-Primer-and-Should-You-Use-It.html
 
 Angular
-	Debuging: old method : console.log and display to screen with object | json
-	Typescript -> compiled (ng build)-> Javascript 
-	angular.json -> Option to build angular to wwwroot folder 
-	tsconfig.json -> ts compile options
 	Need at least 1 module -> has 1 main component -> bootstrap setting
-	include the js file
+	Debuging: old method : console.log and display to screen with object | json
+	angular.json -> Option to build angular to wwwroot folder 
+	tsconfig.json -> ts compile options	
+	
 	Component :
+		decorator: component
 		selector -> match with div in html file
 		templateUrl -> view (html)
 		styles -> css file
-	Component -> use -> services (data)
+		use -> services (data)
+	Services:
+		for data sharing
+		decorator : Injectable
 
 	add checkout
 		routing
+		define routes
+		import routes in app module
 	add login
+		CanActivate -> interface -> use in routing -> to be a guard deciding if a route can be activated -> services
 		form binding
+			import FormsModule
+			model binding
+				[] = one way binding from model to view
+				[()] = two way binding
+			validation
+
+
 	checkout clicked
 		call service for saving order
 

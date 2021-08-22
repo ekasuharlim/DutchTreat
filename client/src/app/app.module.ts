@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+
 import { AppComponent } from './app.component';
 import { Store } from './Services/store.service';
 import { CartView } from './views/cartView.component';
@@ -10,6 +11,9 @@ import { CheckOut } from './pages/checkoutView.component';
 import { FrontPageStore } from './pages/frontPageStoreView.component';
 import ProductListView from './views/productListView.component';
 import router from './router';
+import { AuthActivator } from './Services/authActivator.service';
+import { FormsModule } from '@angular/forms';
+import { LoginPage } from './pages/LoginPageView.component';
 
 @NgModule({
   declarations: [
@@ -17,17 +21,19 @@ import router from './router';
         ProductListView,
         CartView,
         FrontPageStore,
-        CheckOut
+        CheckOut,
+        LoginPage
   ],
   imports: [
       BrowserModule,
       HttpClientModule,
       RouterModule,
-      router
+      router,
+      FormsModule
   ],
     providers: [
-        Store
-        
+        Store,
+        AuthActivator        
     ],
     bootstrap: [AppComponent]
 })

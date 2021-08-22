@@ -9,6 +9,8 @@ export class Store {
 
     public products: Product[] = [];
     public order: Order = new Order();
+    private token = "";
+    private tokenExpiry = new Date();
 
     constructor(private http: HttpClient) {
         this.order.orderNumber = "12345";
@@ -21,6 +23,10 @@ export class Store {
             this.products = data;
             return;
         }))
+    }
+
+    public isLoginRequired() {
+        return this.token.length === 0 || this.tokenExpiry < new Date();
     }
 
     public addItemToOrder(product: Product) {
