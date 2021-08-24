@@ -11,4 +11,13 @@ export class CheckOut {
     constructor(public store: Store) {
 
     }
+
+    public submit() {
+        this.store.submitOrder().subscribe(() => {
+            console.log("order created");
+        }, error => {
+            console.log("order creation failed");
+            console.log(error);
+        });
+    }
 }

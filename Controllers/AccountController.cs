@@ -70,34 +70,34 @@ namespace DutchTreat.Controllers
             if (ModelState.IsValid) 
             {
                 var user = await this.userManager.FindByNameAsync(model.UserName);
-                var result = await this.signInManager.CheckPasswordSignInAsync(user, model.Password, false);
-                if (result.Succeeded) 
-                {
-                    var claims = new[] {
+                if (user != null) {
+                    var result = await this.signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+                    if (result.Succeeded)
+                    {
+                        var claims = new[] {
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
                     };
 
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.config["Token:Key"]));
-                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.config["Token:Key"]));
+                        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken(
-                        this.config["Token:Issuer"], 
-                        this.config["Token:Audience"],
-                        claims,
-                        signingCredentials: creds,
-                        expires: DateTime.UtcNow.AddMinutes(60));
-                    return Created("", new
-                    {
-                        token = new JwtSecurityTokenHandler().WriteToken(token),
-                        expiration = token.ValidTo
-                    });
+                        var token = new JwtSecurityToken(
+                            this.config["Token:Issuer"],
+                            this.config["Token:Audience"],
+                            claims,
+                            signingCredentials: creds,
+                            expires: DateTime.UtcNow.AddMinutes(60));
+                        return Created("", new
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(token),
+                            expiration = token.ValidTo
+                        });
 
+                    }
                 }
 
             }
-
-
             return BadRequest();
         }
     }
